@@ -28,6 +28,16 @@
   * Leader Re-election Algorithm
     * After the initial leader election, each node is only going to watch the znode that comes right before it in the sequence of candidate znodes.
     * This way if the leader dies, the only node its going to be notified is its immediate successor
+* Lec 6. Leader Reelection Implementation
+  * Implementation:  
+    * *reelectLeader* while loop
+    * *NodeDeleted* case in *process* method
+  * Inject Failures and test our cluster
+    * start four terminals
+    * run **java -jar leader.election-1.0-SNAPSHOT-jar-with-dependencies.jar** on each terminal one by one
+    * kill the process on the first terminal, notice the second terminal takes the leader role
+    * We do this one by one until only the 4th terminal isnt killed yet
+    * If we restart the 1st terminal it will be watching the 4th terminal
    
       
     
