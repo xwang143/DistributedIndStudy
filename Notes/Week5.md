@@ -54,6 +54,58 @@
         * FDP (File Transfer Protocal): transfering files through the web
         * SMTP (Simple Mail Transfer Protocol): sending the receiving emails
         * DNS (Domain Name System): Translating host names into IP addresses
-        * HTTP (Hypertext Transfer Protocol): Transmitting Hypermedia documents, video, sound, images...
+        * HTTP (Hypertext Transfer Protocol): Transmitting Hypermedia documents, video, sound, images...      
+* Lec 10. HTTP for Communication in Distributed Systems.  
+  * HTTP Fundamentals
+    * HTTP was initially designed to serve contents from the web server to the user web browsers
+    * However in our course, we will focus on the use of http in the distributed systems fro communication between compute nodes
+    * Every http transactions have two parts
+      * request from client node to server node
+      * response from server node back to the client node (can be empty).  
+  * HTTP Request Structure.  
+    * method
+     * get
+       * safe - only retrieval action with no side effects 
+       * idempotent - performing the underlying operation N times is equivalent to performing it only once 
+       * does not contain a message body
+       * Use cases: health check, distributed data retieval
+     * post 
+       * contains a message body(payload)
+       * may have side effects, operation more complex
+       * useful in communication between nodes
+    * Path
+     * Relative Path...Query String
+    * Protocol Version
+     * HTTP/1.1
+       * loads resources one after the other, so if one resource cannot be loaded it blocks all the other resources behind it
+       * Disadvantages
+         * Creating a new connection for every request is expensive
+         * The number of outgoing connections a client can maintain is limited by 
+           * Number of ports 
+           * The OS   
+     * HTTP/2   
+       * split data into binary-code messages and numbering these messages so that the client knows which stram each binary message belongs to.   
+    * Headers
+      * key-values strings: Header-Name: Value1; Value2; Value3
+      * some headers are used only in requests or only in responses, and some are used in both
+      * Allow the recipient to take actions before reading the message body
+        * Memory Allocation
+        * Skipping / Forwarding (Proxying)
+      * HTTP/1.1 header - plain text key value pairs that can be easily inspected by tools like WIreshark
+      * HTTP/2 - the headers are compressed
+        * saves on payload side
+        * hard to inspect / debug
+    *  Message Body
+       * can contain anything we want
+       * the server and client have to agree on how to parse the data
+       * can contain complex data objects    
+   * HTTP Response Structure
+     * status code instead of path
+       * 200 Success
+       * 400 Client Errors
+       * 600 Server Errors
+     * status message instad of method 
+        
+     
   
         
